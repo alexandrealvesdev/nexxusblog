@@ -1,0 +1,422 @@
+<style>
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: linear-gradient(55deg, rgb(97, 29, 124) 25%, #b631d1 100%);
+        height: 100%;
+        width: 26rem;
+        z-index: 100;
+        transition: all 0.5s ease;
+    }
+
+    .sidebar.close {
+        width: 7.8rem;
+    }
+
+    .sidebar .logoDetails {
+        width: 100%;
+        height: 6rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .sidebar .logoDetails img {
+        color: #fff;
+        width: 5rem;
+        margin: 2rem;
+        text-align: center;
+        line-height: 5rem;
+    }
+
+    .sidebar .logoDetails .logoName {
+        font-size: 3rem;
+        margin-top: .3rem;
+        margin-left: 1.4rem;
+        font-weight: 800;
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar.close .logoDetails .logoName {
+        transition-delay: 0s;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .sidebar .navLinks::-webkit-scrollbar {
+        display: none;
+    }
+
+    .sidebar .navLinks {
+        height: 100%;
+        padding: 3rem 0 15rem 0;
+        overflow: auto;
+    }
+
+    .sidebar .navLinks {
+        overflow: visible;
+    }
+
+    .sidebar .navLinks li {
+        position: relative;
+        list-style: none;
+    }
+
+    .sidebar .navLinks li:hover {
+        background: #870099;
+        transition: all 0.4s ease;
+    }
+
+    .sidebar .navLinks li .iconLink {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        justify-content: space-between;
+    }
+
+    .sidebar.close .navLinks li .iconLink {
+        display: block;
+    }
+
+    .sidebar .navLinks li i {
+        height: 5rem;
+        min-width: 7.8rem;
+        text-align: center;
+        line-height: 5rem;
+        color: #fff;
+        font-size: 2rem;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar .navLinks li.showMenu i.arrow {
+        transform: rotate(-180deg);
+    }
+
+    .sidebar.close .navLinks .arrow {
+        display: none !important;
+    }
+
+    .sidebar .navLinks li a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .sidebar .navLinks li a .linkName {
+        font-size: 1.8rem;
+        font-weight: 400;
+    }
+
+    .sidebar.close .navLinks li a .linkName {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .sidebar .navLinks li .subMenu {
+        padding: .6rem .6rem 1.4rem 8rem;
+        margin-top: -1rem;
+        background: #870099;
+        color: #fff;
+        display: none;
+    }
+
+    .sidebar .navLinks li.showMenu .subMenu {
+        display: block;
+    }
+
+    .sidebar .navLinks li .subMenu a {
+        color: #fff;
+        font-size: 1.5rem;
+        padding: .5rem 0;
+        white-space: nowrap;
+        opacity: 0.6;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar .navLinks li .subMenu a:hover {
+        opacity: 1;
+    }
+
+    .sidebar.close .navLinks li .subMenu {
+        position: absolute;
+        top: -10px;
+        left: 100%;
+        margin-top: 0;
+        padding: 1rem 2rem;
+        border-radius: 0 6px 6px 0;
+        transition: all 0.4s ease;
+        opacity: 0;
+        display: block;
+        pointer-events: none;
+    }
+
+    .sidebar.close .navLinks li:hover .subMenu {
+        top: 0;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .sidebar .navLinks li .subMenu .linkName {
+        display: none;
+    }
+
+    .sidebar.close .navLinks li .subMenu .linkName {
+        font-size: 1.8rem;
+        opacity: 1;
+        display: block;
+    }
+
+    .sidebar .navLinks li .subMenu.blank {
+        opacity: 1;
+        pointer-events: none;
+        padding: .3rem 2rem .6rem 1.6rem;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .sidebar .navLinks li:hover .subMenu.blank {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .sidebar .profileDetails {
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        width: 26rem;
+        align-items: center;
+        justify-content: space-between;
+        background: #870099;
+        padding: .6rem 0;
+        transition: all 0.4s ease;
+    }
+
+    .sidebar.close .profileDetails {
+        width: 7.8rem;
+    }
+
+    .sidebar .profileDetails .profileContent {
+        display: flex;
+        align-items: center;
+        margin: 0 1.1rem;
+    }
+
+    .sidebar .profileDetails .profileName, 
+    .sidebar .profileDetails .job {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 500;
+        white-space: nowrap;
+        transition: all 0.5s ease;
+    }
+
+    .sidebar.close .profileDetails {
+        height: 6.2rem;
+    }
+
+    .sidebar.close .profileDetails i,
+    .sidebar.close .profileDetails .profileName, 
+    .sidebar.close .profileDetails .job {
+        display: none;
+        transition: all 0.5s ease;
+    }   
+
+    .sidebar .profileDetails .job {
+        font-size: 1.1rem;
+    }
+
+    .sidebar .profileDetails img {
+        height: 4rem;
+        width: 4rem;
+        object-fit: cover;
+        margin: 0 .8rem 0 .9rem;
+        border-radius: 1.2rem;
+        transition: all 0.5s ease;
+    }
+
+    .sidebar.close .profileDetails img {
+        transform: scale(0.8);
+        transition: all 0.5s ease;
+    }
+
+    .homeSection {
+        position: relative;
+        left: 26rem;
+        width: calc(100% - 26rem);
+        height: 1vh;
+        transition: all 0.5s ease;
+    }
+
+    .sidebar.close ~ .homeSection {
+        left: 7.8rem;
+        width: calc(100% - 7.8rem);
+    }
+
+    .homeSection .homeContent {
+        height: 6rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .homeSection .homeContent .textMenu {
+        color: #870099;
+        font-size: 2.6rem;
+        font-weight: 600;
+    }
+
+    .homeSection .homeContent .bx-menu {
+        color: #870099;
+        font-size: 3.5rem;
+        margin: 0 1.5rem;
+        cursor: pointer;
+        z-index: 5;
+    }
+
+</style>
+
+<div class="sidebar">
+    <div class="logoDetails">
+        <a href="/blog">
+            <img src="/images/Nexxus Icon.webp" alt="">
+        </a>
+        <span class="logoName">Nexxus</span>
+    </div> <!--logoDetails-->
+    <ul class="navLinks">
+        <li>
+            <a href="#">
+                <i class='bx bx-grid-alt'></i>
+                <span class="linkName">Dashboard</span>
+            </a>
+            <ul class="subMenu blank">
+                <li><a class="linkName" href="#">Dashboard</a></li>
+            </ul> <!--subMenu-->
+        </li>
+        <li>
+            <a href="/blog">
+                <i class='bx bx-edit' ></i>
+                <span class="linkName">Blog</span>
+            </a>
+            <ul class="subMenu blank">
+                <li><a class="linkName" href="#">Blog</a></li>
+            </ul> <!--subMenu-->
+        </li>
+        <li>
+            <div class="iconLink">
+                <a href="#">
+                    <i class='bx bx-collection' ></i>
+                    <span class="linkName">Categoria</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="subMenu">
+                <li><a class="linkName" href="#">Categoria</a></li>
+                <li><a href="/admin/categories/new">Criar Categoria</a></li>
+                <li><a href="/admin/categories">Listar Categorias</a></li>
+            </ul> <!--subMenu-->
+        </li>
+        <li>
+            <div class="iconLink">
+                <a href="#">
+                    <i class='bx bx-book' ></i>
+                    <span class="linkName">Artigos</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="subMenu">
+                <li><a class="linkName" href="#">Artigos</a></li>
+                <li><a href="/admin/articles/new">Criar Artigo</a></li>
+                <li><a href="/admin/articles">Listar Artigos</a></li>
+            </ul> <!--subMenu-->
+        </li>
+        <li>
+            <div class="iconLink">
+                <a href="#">
+                    <i class='bx bx-briefcase' ></i>
+                    <span class="linkName">Projetos</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="subMenu">
+                <li><a class="linkName" href="#">Projetos</a></li>
+                <li><a href="#">Adicionar Projeto</a></li>
+                <li><a href="#">Listar Projetos</a></li>
+                <li><a href="#">Criar Categoria</a></li>
+                <li><a href="#">Listar Categorias</a></li>
+            </ul> <!--subMenu-->
+        </li>
+        <li>
+            <div class="iconLink">
+                <a href="#">
+                    <i class='bx bx-user'></i>
+                    <span class="linkName">Clientes</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="subMenu">
+                <li><a class="linkName" href="#">Clientes</a></li>
+                <li><a href="#">Nova Avaliação</a></li>
+                <li><a href="#">Listar Avaliações</a></li>
+            </ul> <!--subMenu-->
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-pie-chart-alt-2' ></i>
+                <span class="linkName">Análises</span>
+            </a>
+            <ul class="subMenu blank">
+                <li><a class="linkName" href="#">Análises</a></li>
+            </ul> <!--subMenu-->
+        </li>
+        <li>
+            <a href="#">
+                <i class='bx bx-cog' ></i>
+                <span class="linkName">Configurações</span>
+            </a>
+            <ul class="subMenu blank">
+                <li><a class="linkName" href="#">Configurações</a></li>
+            </ul> <!--subMenu-->
+        </li>
+        <li>
+    <div class="profileDetails">
+        <div class="profileContent">
+            <img src="/images/myImage.webp">
+        </div> <!--profileContent-->
+        <div class="nameJob">
+            <div class="profileName">Alexandre Alves</div>
+            <div class="job">Programador e Designer</div>
+        </div> <!--nameJob-->
+        <a href="/logout"><i class='bx bx-log-out' ></i></a>
+    </div> <!--profileDetails-->
+</li>
+</ul> <!--navLinks-->
+</div> <!--sideBar-->
+<section class="homeSection">
+    <div class="homeContent">
+        <i class='bx bx-menu' ></i>
+        <span class="textMenu">Menu Sidebar</span>
+    </div> <!--homeContent-->
+</section> <!--homeSection-->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let sidebar = document.querySelector(".sidebar");
+        sidebar.classList.add("close");
+    });
+
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement;
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    sidebarBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("close");
+    });
+</script>

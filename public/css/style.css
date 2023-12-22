@@ -1,0 +1,664 @@
+:root {
+    --primaryColor: #9d0ed8;
+    --secondaryColor: #c809e1;
+    --tertiaryColor: #fff;
+    --additionalColor: ;
+
+    --txtPrimary: #fff;
+    --txtSecondary: ;
+
+    --darkShadow: 0 .5rem 1.5rem rgba(0, 0, 0, 0.56);
+    --transition: all 0.2s linear;
+}
+
+/* Estilos Gerais */
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+li, a {
+    list-style: none;
+    text-decoration: none;
+}
+
+/* .whatsappIcon {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    font-size: 4rem;
+    background-color: #01e675;
+    color: white;
+    border-radius: 50%;
+    padding: 3px;
+    width: 6rem;
+    height: 6rem;
+    text-align: center;
+    text-decoration: none;
+    z-index: 100;
+    box-shadow: 2px 2px 2px #c0bdbd;
+    transition: var(--transition);
+}
+
+.whatsappIcon .fab {
+    padding-top: 6px;
+}
+
+.whatsappIcon:hover {
+    transition: var(--transition);
+    transform: scale(1.1);
+    color: #029e3b;
+    font-weight: 900;
+    box-shadow: 2px 2px 20px #5fe690;
+} */
+
+.fa-chevron-down {
+    font-size: 13px !important;
+}
+
+/* Navbar */
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    height: 7rem;
+    z-index: 3;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    background-color: #00000042;
+    transition: var(--transition);
+    backdrop-filter: blur(6px);
+}
+
+.navbarHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 1.2rem;
+}
+
+.navbarButton {
+    font-size: 3.3rem;
+    border: none;
+    color: var(--txtPrimary);
+    background: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.navbarArrows {
+    display: none;
+}
+
+.Logo {
+    width: 19rem;
+}
+
+.navbarButton:hover {
+    transform: scale(1.15);
+    transition: var(--transition);
+    color: var(--primaryColor);
+}
+
+.navbarList {
+    height: 0;
+    overflow: hidden;
+    list-style: none;
+    transition: all 0.6s ease;
+    text-align: left;
+    background: rgba(127, 30, 165, 0.925);
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    padding: 0;
+}
+
+.navbarList--showLinks {
+    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.navbarListLink {
+    display: block;
+    font-size: 1.9rem;
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: capitalize;
+    padding: 1.4rem;
+    color: var(--txtPrimary);
+    transition: var(--transition);
+}
+
+.navbarListLink:hover {
+    color: var(--secondaryColor);
+}
+
+.navbarSocialMedias {
+    display: none;
+}
+
+/* Navbar Desktop */
+
+@media screen and (min-width: 1000px) {
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.4rem 2rem;
+        width: 100%;
+    }
+
+    .navbarArrows {
+        display: inline;
+    }
+
+    .navbarButton {
+        display: none;
+    }
+
+    .navbarList {
+        height: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        background: none;
+        padding: 1rem 0;
+    }
+
+    .navbarListLink {
+        font-size: 1.8rem;
+        position: relative;
+        margin-left: 8px;
+    }
+
+    .navbarListLink:hover {
+        background: #a602ac;
+        border-radius: 5px;
+        color: #fff;
+    }
+
+    .navbarListLink:after {
+        content: "";
+        position: absolute;
+        /* background-color:  */
+        height: 2px;
+        width: 0;
+        left: 0;
+        bottom: -6px;
+        transition: 0.3s;
+    }
+
+    .navbarListLink:hover:after {
+        width: 90%;
+    }
+
+    .navbarSocialMedias {
+        display: flex;
+        font-size: 2.2rem;
+        padding-left: 2rem;
+        font-weight: 800;
+    }
+
+    .navbarSocialMedias a {
+        padding-left: 1.4rem;
+        /* color: ; */
+        transition: var(--transition);
+    }
+
+    .navbarSocialMedias a:hover {
+        color: var(--tertiaryColor);
+        transition: var(--transition);
+    }
+}
+
+@media screen and (min-width: 1090px) {
+
+    .navbarHeader a {
+        margin-left: 80%;
+    }
+
+    .navbarList {
+        justify-content: right;
+        padding-right: 5%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+
+    .navbarSocialMedias a:nth-last-child(1) {
+        padding-right: 4rem;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+
+    .navbarHeader a {
+        margin-left: 20rem;
+    }
+}
+
+/* Wallpaper */
+
+#wallpaper {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(190deg, rgb(122, 51, 150) 0%, rgb(127, 30, 165) 21%, rgba(169, 9, 190, 1) 81%);
+}
+
+.wallpaperPattern {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    opacity: .35;
+    transform: scaleX(-1);
+}
+
+.verified {
+    margin-right: .4rem;
+    width: 24px;
+}
+
+.wallpaperTexts {
+    position: absolute;
+    top: 8rem;
+    margin: 0 3rem;
+    text-align: left;
+    line-height: 4.5rem;
+}
+
+.wallpaperTexts h2 {
+    font-size: 1.4rem;
+    color: var(--txtPrimary);
+    margin: 0;
+    margin-top: 7rem;
+}
+
+.wallpaperTexts h3 {
+    font-size: 4rem;
+    color: var(--txtPrimary);
+    max-width: 700px;
+    margin: 0;
+    margin-top: 1.8rem;
+}
+
+.wallpaperTexts p {
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--txtPrimary);
+    margin: 0;
+    margin-top: 1.6rem;
+    line-height: 2.2rem;
+}
+
+.notebook {
+    display: none;
+    z-index: 2;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#btn {
+    width: 10em;
+    height: 3em;
+    border-radius: 30em;
+    font-size: 20px;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    font-weight: 500;
+    overflow: hidden;
+    z-index: 1;
+    color: #000;
+    background: var(--txtPrimary);
+    margin-top: 6rem;
+    margin-left: .3rem;
+    box-shadow: 3px 3px 25px #2d0152;
+    transition: .5s ease;
+}
+
+#btn::before {
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(190deg, rgb(122, 51, 150) 0%, rgb(127, 30, 165) 21%, rgba(169, 9, 190, 1) 81%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+#btn:hover::before {
+    width: 10em;
+}
+
+#btn:hover {
+    transition: .5s ease;
+    color: var(--txtPrimary);
+    border: 1px solid var(--txtPrimary);
+}
+
+/* Content Desktop */
+
+@media screen and (min-width: 1024px) {
+    .wallpaperTexts {
+        top: 5rem;
+        max-width: 45%;
+        left: 2%;
+    }
+
+    #btn {
+        margin: 0;
+        margin-top: 4rem;
+        width: 12em;
+    }
+
+    #btn:hover::before {
+        width: 12em;
+    }
+
+    .verified {
+        width: 22px;
+    }
+
+    .wallpaperTexts h2 {
+        font-size: 1.5rem;
+        max-width: 500px;
+    }
+
+    .wallpaperTexts h3 {
+        font-size: 4.8rem;
+        line-height: 5.4rem;
+        max-width: 420px;
+    }
+
+    .wallpaperTexts p {
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+        max-width: 420px;
+    }
+
+    .container {
+        width: 50% !important;
+    }
+
+    .notebook {
+        display: inline;
+        width: 500px;
+        position: absolute;
+        top: 18rem;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .wallpaperTexts {
+        top: 4rem;
+        max-width: 45%;
+        left: 6%;
+    }
+
+    .verified {
+        width: 22px;
+    }
+
+    .wallpaperTexts h2 {
+        font-size: 1.6rem;
+        max-width: 500px;
+    }
+
+    .wallpaperTexts h3 {
+        font-size: 5.1rem;
+        line-height: 5.4rem;
+        max-width: 420px;
+    }
+
+    .wallpaperTexts p {
+        font-size: 2rem;
+        line-height: 2.4rem;
+        max-width: 420px;
+    }
+
+    .notebook {
+        width: 580px;
+        position: absolute;
+        top: 14rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+
+    .wallpaperTexts {
+        top: 5rem;
+    }
+
+    .notebook {
+        width: 650px;
+        position: absolute;
+        top: 15rem;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .wallpaperTexts {
+        top: 5rem;
+        max-width: 50%;
+        left: 8%;
+    }
+
+    .wallpaperTexts h2 {
+        font-size: 1.8rem;
+        max-width: 550px;
+    }
+
+    .wallpaperTexts h3 {
+        font-size: 5.8rem;
+        line-height: 6.7rem;
+        max-width: 500px;
+    }
+
+    .wallpaperTexts p {
+        font-size: 2.2rem;
+    }
+
+    .notebook {
+        width: 670px;
+        position: absolute;
+        top: 14rem;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .wallpaperTexts {
+        top: 6rem;
+        left: 10%;
+    }
+
+    #btn {
+        margin-top: 5rem;
+    }
+}
+
+/* Benefits */
+
+.benefits {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.TextsTitles {
+    text-align: center;
+    line-height: 3.8rem;
+}
+
+.TextsTitles p {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 1rem;
+    color: #1f1f1f;
+    text-transform: uppercase;
+    line-height: 2.6rem;
+}
+
+.text {
+    outline: none;
+    font-size: 3.5rem;
+    font-weight: 1000;
+    margin: 0 1rem;
+    background: linear-gradient(135deg, var(--primaryColor) 0%, var(--secondaryColor) 25%, rgb(101, 46, 146) 50%, var(--primaryColor) 100%);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate 7s linear infinite;
+}
+
+@keyframes animate {
+    100% {
+        background-position: 550%;
+    }
+}
+
+.benefitsCard {
+    margin: 2rem 3rem;
+    margin-bottom: 4rem;
+    padding: 2rem 4rem;
+    border-radius: 12px;
+    background: linear-gradient(305deg, rgb(130, 55, 160) 25%, var(--secondaryColor) 100%);
+    box-shadow: 3px 3px 25px #000000;
+    transition: var(--transition);
+    color: #fff;
+    height: 360px !important;
+}
+
+.benefitsCard:hover {
+    transform: scale(1.02);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.benefitsCard img {
+    margin-top: 2rem;
+}
+
+.benefitsCard:nth-child(3) img,
+.benefitsCard:nth-child(5) img,
+.benefitsCard:nth-child(6) img {
+    width: 70px;
+    margin-bottom: 10px;
+}
+
+.benefitsCard h3 {
+    font-size: 2.6rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin-top: 3rem;
+    margin-bottom: 0;
+}
+
+.benefitsCard p {
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: 400;
+    line-height: 2rem;
+}
+
+@media screen and (min-width: 1000px) {
+    .benefits {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    .benefits .benefitsCards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .benefitsCard {
+        width: 30rem;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .benefits {
+        text-align: center;
+        margin-top: 1rem;
+    }
+    
+    .TextsTitles p {
+        font-size: 2.3rem;
+        font-weight: 800;
+        color: #1f1f1f;
+    }
+    
+    .text {
+        font-size: 4rem;
+        font-weight: 1000;
+        margin: 0 1rem;
+    }
+}
+
+@media screen and (min-width: 1640px) {
+    
+    .benefits .benefitsCards {
+        margin: 0 15%;
+    }
+
+    .benefitsCard {
+        flex-basis: calc(33.33% - 50px);
+        margin: 25px;
+        background-color: #f0f0f0;
+        box-sizing: border-box;
+        max-width: 30rem;
+    }
+}
+
+/* Projects */
+
+#projects {
+    margin-top: 7rem;
+}
+
+.TextsTitles span {
+    display: none;
+}
+
+@media screen and (min-width: 1000px) {
+    .TextsTitles span {
+        display: inline;
+        font-size: 1.8rem;
+        font-weight: 300;
+    }
+}

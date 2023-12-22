@@ -1,0 +1,161 @@
+<%- include("../../partials/header.ejs") %>
+    <style>
+        .containerb {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            align-items: left;
+            justify-content: left;
+            padding: 0 20% !important;
+            padding-top: 10rem !important;
+        }
+
+        .containerb form {
+            border: 1px solid rgb(190, 190, 190);
+            padding: 2.4rem 2rem;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .containerb form input {
+            width: 100%;
+            height: 4.4rem;
+            padding-left: 1.2rem;
+            text-align: center;
+            font-size: 1.6rem;
+            border-radius: 5px;
+            border: 1px solid rgb(190, 190, 190);
+            margin: 0 auto;
+        }
+
+        .containerb form select {
+            width: 100%;
+            height: 4.4rem;
+            padding-left: 1.2rem;
+            text-align: left;
+            font-size: 1.6rem;
+            border-radius: 5px;
+            border: 1px solid rgb(190, 190, 190);
+            margin: 0 auto;
+        }
+
+        .containerbButton {
+            border-radius: 5px;
+            border: transparent;
+            height: 4rem;
+            width: 49%;
+            font-size: 1.9rem;
+            font-weight: 200;
+            color: #fff;
+            background: #870099;
+            transition: all 0.5s ease;
+        }
+
+        .containerbButton:hover {
+            transform: scale(1.02);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .containerb h1 {
+            font-size: 3.4rem;
+            text-align: center;
+        }
+
+        .containerbTitle {
+            background: #f0f0f0;
+            border-radius: 14px 14px 0 0;
+            border: 1px solid rgb(190, 190, 190);
+            border-bottom: 0;
+        }
+
+        .ImageExist {
+            width: 25rem;
+            border-radius: 8px;
+            margin: 0 auto;
+        }
+        .buttons{
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .buttons .containerbButton:nth-child(1){
+            background: gray;
+        }
+        .containerbButton a{
+            color: #fff;
+        }
+    </style>
+    <%- include("../../partials/adminnavbar.ejs") %>
+        <div class="containerb">
+            <br>
+            <div class="containerbTitle">
+                <h1>Edição de Artigos</h1>
+            </div>
+            <form method="POST" action="/articles/update" enctype="multipart/form-data">
+                <input type="hidden" value="<%= article.id %>" name="id">
+                <input type="text" value="<%= article.title %>" required name="title"
+                    placeholder="Defina o novo título do Artigo">
+                <br>
+                <br>
+                <textarea required name="body" placeholder="Escreva o novo artigo aqui!" id="article"><%- article.body %></textarea>
+                <br>
+                <br>
+                <input type="file" name="file">
+                <br>
+                <br>
+                <% if (article.image) { %>
+                    <img  class="ImageExist" src="/uploads/<%= article.image %>">
+                <% } %>
+                <br>
+                <br>
+                <select name="category">
+                    <% categories.forEach((category)=> { %>
+
+                        <% if(category.id==article.categoryId) { %>
+                            <option value="<%= category.id %>" selected>
+                                <%= category.title %>
+                            </option>
+                            <% } else { %>
+                                <option value="<%= category.id %>">
+                                    <%= category.title %>
+                                </option>
+                                <% } %>
+
+                                    <% }) %>
+                </select>
+                <br>
+                <br>
+                <div class="buttons" style="display: flex;">
+                    <button type="button" class="containerbButton"><a href="/admin/articles">Voltar</a></button>
+                    <button class="containerbButton">Atualizar</button>
+                </div>
+            </form>
+        </div> <!--container-->
+
+        <script src="/tinymce/tinymce.min.js"></script>
+        <script>
+            tinymce.init({
+                language: 'pt_BR',
+                selector: '#article',
+                plugins: [
+                    'advlist',
+                    'autolink',
+                    'link',
+                    'image',
+                    'lists',
+                    'preview',
+                    'searchreplace',
+                    'wordcount',
+                    'fullscreen',
+                    'insertdatetime',
+                    'media',
+                    'save',
+                    'table',
+                    'emoticons',
+                ]
+            });
+        </script>
+
+        <%- include("../../partials/footer.ejs") %>

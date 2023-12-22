@@ -1,0 +1,92 @@
+<%- include("../../partials/header.ejs") %>
+    <style>
+        .containerb {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            align-items: left;
+            justify-content: left;
+            padding: 0 20% !important;
+            padding-top: 10rem !important;
+        }
+
+        .containerb form {
+            border: 1px solid rgb(190, 190, 190);
+            padding: 2.4rem 2rem;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .containerb form input {
+            width: 100%;
+            height: 4.4rem;
+            padding-left: 1.2rem;
+            text-align: center;
+            font-size: 1.6rem;
+            border-radius: 5px;
+            border: 1px solid rgb(190, 190, 190);
+            margin: 0 auto;
+        }
+
+        .containerbButton {
+            border-radius: 5px;
+            border: transparent;
+            height: 4rem;
+            width: 49%;
+            font-size: 1.9rem;
+            font-weight: 200;
+            color: #fff;
+            background: #870099;
+            transition: all 0.5s ease;
+        }
+
+        .containerbButton:hover {
+            transform: scale(1.02);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .containerb h1 {
+            font-size: 3.4rem;
+            text-align: center;
+        }
+
+        .containerbTitle {
+            background: #f0f0f0;
+            border-radius: 14px 14px 0 0;
+            border: 1px solid rgb(190, 190, 190);
+            border-bottom: 0;
+        }
+        .buttons{
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+        .buttons .containerbButton:nth-child(1){
+            background: gray;
+        }
+        .containerbButton a{
+            color: #fff;
+        }
+    </style>
+    <%- include("../../partials/adminnavbar.ejs") %>
+        <div class="containerb">
+            <div class="containerbTitle">
+                <h1>Cadastro de Usuários</h1>
+            </div>
+            <form method="POST" action="/users/create">
+                <input type="text" required name="email" placeholder="Defina o email do usuário">
+                <br>
+                <br>
+                <input type="password" required name="password" placeholder="Defina a senha do usuário">
+                <br>
+                <br>
+                <div class="buttons" style="display: flex;">
+                    <button type="button" class="containerbButton"><a href="/admin/users">Voltar</a></button>
+                    <button type="submit" class="containerbButton">Cadastrar</button>
+                </div>
+            </form>
+        </div> <!--container-->
+
+        <%- include("../../partials/footer.ejs") %>

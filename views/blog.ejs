@@ -1,0 +1,220 @@
+<style>
+    .colorNav {
+        width: 100%;
+        height: 35rem;
+        background: linear-gradient(190deg, rgb(122, 51, 150) 0%, rgb(127, 30, 165) 21%, rgba(169, 9, 190, 1) 81%);
+    }
+
+    .containerb {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 0 1.5rem;
+        z-index: 5;
+    }
+
+    .cardBlog {
+        max-width: 380px;
+        max-height: 250px;
+    }
+
+    .cardBlog span {
+        margin-top: 0;
+        padding-left: 1rem;
+        color: #000;
+        font-size: 1.3rem;
+    }
+
+    .cardBlog h2 {
+        margin-top: 0;
+        padding-left: 1rem;
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 400;
+    }
+
+    .imageBlog {
+        padding: 1rem;
+        padding-bottom: .3rem;
+        max-width: 380px;
+        max-height: 208px;
+        object-fit: cover;
+    }
+
+    .blogTitle {
+        position: absolute;
+        width: 100%;
+        margin-top: 15rem;
+        text-align: center;
+        color: #fff;
+        font-size: 2.9rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        align-items: center;
+    }
+
+    .blogDesc {
+        position: absolute;
+        width: 100%;
+        margin-top: 20rem;
+        padding: 0 3.5rem;
+        text-align: center;
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        align-items: center;
+    }
+
+    .blogDesc span {
+        display: none;
+    }
+
+    .blogItens .wallpaperPattern {
+        height: 32rem;
+    }
+
+    .blogCategories {
+        display: flex;
+        overflow-x: scroll;
+        text-align: center;
+        background: #870099;
+        margin-bottom: 2rem;
+    }
+
+    .blogItems {
+        display: flex;
+        width: 100%;
+        height: 6rem;
+        margin: 0 18rem;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .blogItems a {
+        margin: 0 2.5rem;
+        font-size: 1.6rem;
+        font-weight: 300;
+        color: #fff;
+        transition: all .2s ease;
+    }
+
+    .blogItems a:hover {
+        opacity: 0.85;
+        transition: all .2s ease;
+    }
+
+    .rowRight {
+        float: right;
+        margin: 2rem 0;
+        margin-right: 2.5rem;
+        background: #870099;
+        padding: 1rem;
+        border-radius: 5px;
+        transition: all .2s ease;
+    }
+
+    .rowRight a {
+        color: #fff;
+        font-size: 1.4rem;
+        font-weight: 300;
+    }
+
+    .rowRight:hover {
+        opacity: 0.85;
+        transition: all .2s ease;
+    }
+
+    @media screen and (min-width: 1000px) {
+        .blogCategories {
+            overflow-x: hidden;
+        }
+
+        .blogDesc span {
+            display: inline;
+        }
+
+        .blogItems {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rowRight {
+            margin-right: 20rem;
+        }
+    }
+
+    @media screen and (min-width: 1540px) {
+        .containerb {
+            width: 100%;
+            padding: 0 12%;
+        }
+
+        .rowRight {
+            margin-right: 30rem;
+        }
+    }
+
+    @media screen and (min-width: 1744px) {
+        .rowRight {
+            margin-right: 38rem;
+        }
+    }
+
+    @media screen and (min-width: 2006px) {
+        .containerb {
+            width: 100%;
+            padding: 0 21%;
+        }
+    }
+</style>
+
+<%- include("./partials/header.ejs") %>
+
+        <div class="blogItens">
+            <img class="wallpaperPattern" src="/images/pattern.webp" alt="">
+            <h1 class="blogTitle">Blog Nexxus</h1>
+            <h2 class="blogDesc">Fique por dentro das melhores dicas para você <span><br></span> aplicar em seu site e
+                nas redes sociais.</h2>
+            <div class="colorNav"></div>
+        </div> <!--blogItens-->
+
+        <div class="blogCategories">
+            <div class="blogItems">
+                <% categories.forEach(category=> { %>
+                    <a href="/blog/categoria/<%= category.slug %>">
+                        <%= category.title %>
+                    </a>
+                    <% }) %>
+            </div> <!--blogItens-->
+        </div> <!--blogCategories-->
+
+        <div class="containerb">
+            <% articles.forEach(article=> { %>
+                <div class="cardBlog">
+                    <a href="/blog/<%= article.slug %>">
+                        <% if (article.image) { %>
+                            <img class="imageBlog" src="/uploads/<%= article.image %>" alt="<%= article.title %>">
+                            <% } %>
+                                <br>
+                                <span>
+                                    <% if (article.category) { %>
+                                        <%= article.category.title %>
+                                    <% } %>
+                                </span>
+                                <h2>
+                                    <%= article.title %>
+                                </h2>
+                    </a>
+                </div> <!--cardBlog-->
+                <% }) %>
+        </div> <!--container-->
+
+        <div class="rowRight">
+            <a href="/blog/pagina/2">Próximo</a>
+        </div> <!--rowRight-->
+
+        <%- include("./partials/footer.ejs") %>

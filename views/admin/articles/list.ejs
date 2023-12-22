@@ -1,0 +1,123 @@
+<%- include("../../partials/header.ejs") %>
+<style>
+    .containerb {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: left;
+        justify-content: left;
+        padding: 0 20% !important;
+        padding-top: 10rem !important;
+    }
+
+    .containerb table {
+        border: 1px solid rgb(190, 190, 190);
+        padding: 2.4rem 2rem;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .containerb thead tr th{
+        border: 1px solid rgb(190, 190, 190);
+        font-size: 1.8rem;
+        text-align: left;
+        padding: 1rem;
+    }
+
+    .containerb tbody tr th{
+        border: 1px solid rgb(190, 190, 190);
+        font-size: 1.8rem;
+        font-weight: 400;
+        text-align: left;
+        padding: 1rem;
+    }
+
+    .containerb tbody {
+        border: 1px solid rgb(190, 190, 190);
+    }
+    
+    .containerb h1 {
+        font-size: 3.4rem;
+        text-align: center;
+    }
+
+    .containerbTitle {
+        background: #f0f0f0;
+        border-radius: 14px 14px 0 0;
+        border: 1px solid rgb(190, 190, 190);
+        border-bottom: 0;
+    }
+
+    .buttonsHrf1,
+    .buttonsHrf2 {
+        font-size: 1.9rem;
+        width: 9rem;
+        border: transparent;
+        height: 3.7rem;
+        border-radius: 3px;
+        transition: .5s ease;
+    }
+
+    .buttonsHrf1:hover,
+    .buttonsHrf2:hover {
+        cursor: pointer;
+        opacity: .80;
+        transition: .5s ease;
+    }
+
+    tbody tr th:nth-child(5) {
+        text-align: right;
+    }
+
+    .buttonsHrf1 {
+            background: rgb(238, 202, 0);
+        }
+
+        .buttonsHrf1 a {
+            color: #000;
+        }
+
+        .buttonsHrf2 {
+            background: rgb(247, 54, 54);
+            color: #fff;
+        }
+</style>
+    <%- include("../../partials/adminnavbar.ejs") %>
+    <div class="containerb">
+        <div class="containerbTitle">
+            <h1>Artigos</h1>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Slug</th>
+                    <th>Categoria</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% articles.forEach(article => { %>
+                <tr>
+                        <th><%= article.id %></th>
+                        <th style="max-width: 25rem;"><%= article.title %></th>
+                        <th style="max-width: 20rem;"><%= article.slug %></th>
+                        <th><%= article.category.title %></th>
+                        <th>
+                            <button class="buttonsHrf1">
+                                <a href="/admin/articles/edit/<%= article.id %>">Editar</a>
+                            </button>
+                            <form method="POST" action="/articles/delete" style="display: inline;">
+                                <input type="hidden" name="id" value="<%= article.id %>">
+                                <button class="buttonsHrf2" href="#" data-toggle="modal" data-target="#deleteModal-<%= article.id %>">
+                                    Deletar
+                                </button>
+                            </form>
+                        </th>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div> <!--container-->
+
+<%- include("../../partials/footer.ejs") %>
