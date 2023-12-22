@@ -17,4 +17,4 @@
 
 > Home
 
-![Home](https://github.com/alexandrealvesdev/nexxusblog/assets/125616646/a86d8f08-9599-44f9-9988-2783255524cb)
+
