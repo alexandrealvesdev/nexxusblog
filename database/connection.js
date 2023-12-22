@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 
-const connection = new Sequelize('Nexxus', 'root', 'sqlpro99', {
+const connection = new Sequelize('Nexxus', 'root', 'admin', {
     host: 'localhost',
     dialect: 'mysql',
     logging: false,
